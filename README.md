@@ -150,8 +150,6 @@ Detects the **presence of microcalcifications** in the mammogram.
 Output :
 - 🌡️ Presence probability heatmap
 
----
-
 #### 🩺 `sus`
 
 Detects **suspicious microcalcifications**.
