@@ -33,21 +33,10 @@ The proposed framework was evaluated using **5-fold cross-validation** for both 
 - 🔍 **Stage 1:** Microcalcification Presence Detection
 - 🩺 **Stage 2:** Suspicious vs. Benign Classification
 
-For each fold, an independent model was trained and evaluated. To facilitate reproducibility and further research, this repository includes the **best-performing model weights** obtained from each fold for both stages.
-
+For each fold, an independent model was trained and evaluated. To facilitate reproducibility and further research . The released weights correspond to the **best-performing model from each fold** of the 5-fold cross-validation experiments.
 These pretrained weights can be used directly through the provided CLI for inference or as initialization for future research and development.
 
 ---
-
-## 📦 Pretrained Models
-
-The repository provides pretrained weights for:
-
-- 🔍 Detection models (Microcalcification Presence)
-- 🩺 Classification models (Suspicious vs. Benign)
-
-The released weights correspond to the **best-performing model from each fold** of the 5-fold cross-validation experiments.
-
 
 ## ✨ Features
 
@@ -104,7 +93,7 @@ Only patches predicted to contain microcalcifications are forwarded to the secon
 🔍 Detection Model
 (Microcalcification?)
           │
-     Positive Patches
+  Positive Patches
           │
           ▼
 🩺 Classification Model
@@ -116,7 +105,9 @@ Only patches predicted to contain microcalcifications are forwarded to the secon
 
 ---
 
-## 🚀 Installation
+## 💻 Usage and Installation
+
+The repository provides a convenient **Command Line Interface (CLI)** for inference. the CLI generates intuitive heatmaps that visualize the spatial distribution of the model's confidence across the mammogram. Model weights download automatically first time you run the inteface .Depending on the selected inference mode, the heatmaps represent either the presence of microcalcifications or the likelihood of suspicious microcalcifications, providing an interpretable visualization of the model's predictions.
 
 Clone the repository:
 
@@ -130,13 +121,6 @@ Install the required packages:
 
 ```bash
 pip install -r requirements.txt
-```
-
----
-
-## 💻 Usage
-
-The repository provides a convenient **Command Line Interface (CLI)** for inference. the CLI generates intuitive heatmaps that visualize the spatial distribution of the model's confidence across the mammogram. Depending on the selected inference mode, the heatmaps represent either the presence of microcalcifications or the likelihood of suspicious microcalcifications, providing an interpretable visualization of the model's predictions.
 
 ```bash
 python mammoAnalyzer.py <input_image> <output_image> -T <type of analysis>
@@ -166,19 +150,6 @@ Typical workflow:
 3. 🔍 Detect candidate patches
 4. 🩺 Classify detected patches
 5. 📊 Generate heatmaps
-
----
-
-## ⚙️ Methodology
-
-The complete inference pipeline follows these steps:
-
-1. 🖼 Preprocess the mammogram
-2. 🧩 Extract image patches
-3. 🔍 Detect patches containing microcalcifications
-4. 🚫 Discard negative patches
-5. 🩺 Classify remaining candidates
-6. 📊 Report suspicious findings
 
 ---
 
