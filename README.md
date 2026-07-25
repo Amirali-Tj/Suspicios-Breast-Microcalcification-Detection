@@ -26,6 +26,29 @@ Both models are based on **ResNet-50 enhanced with the Convolutional Block Atten
 
 ---
 
+## 🧪 Experimental Setup
+
+The proposed framework was evaluated using **5-fold cross-validation** for both stages of the pipeline:
+
+- 🔍 **Stage 1:** Microcalcification Presence Detection
+- 🩺 **Stage 2:** Suspicious vs. Benign Classification
+
+For each fold, an independent model was trained and evaluated. To facilitate reproducibility and further research, this repository includes the **best-performing model weights** obtained from each fold for both stages.
+
+These pretrained weights can be used directly through the provided CLI for inference or as initialization for future research and development.
+
+---
+
+## 📦 Pretrained Models
+
+The repository provides pretrained weights for:
+
+- 🔍 Detection models (Microcalcification Presence)
+- 🩺 Classification models (Suspicious vs. Benign)
+
+The released weights correspond to the **best-performing model from each fold** of the 5-fold cross-validation experiments.
+
+
 ## ✨ Features
 
 - 🧠 ResNet-50 backbone enhanced with **CBAM**
@@ -93,21 +116,6 @@ Only patches predicted to contain microcalcifications are forwarded to the secon
 
 ---
 
-## 📂 Repository Structure
-
-```text
-.
-├── models/            # Trained model weights
-├── cli/               # Command Line Interface
-├── inference/         # Inference pipeline
-├── preprocessing/     # Image preprocessing
-├── utils/             # Utility functions
-├── examples/          # Sample inputs
-└── README.md
-```
-
----
-
 ## 🚀 Installation
 
 Clone the repository:
@@ -128,13 +136,30 @@ pip install -r requirements.txt
 
 ## 💻 Usage
 
-The repository provides a convenient **Command Line Interface (CLI)** for inference.
-
-Display available options:
+The repository provides a convenient **Command Line Interface (CLI)** for inference. the CLI generates intuitive heatmaps that visualize the spatial distribution of the model's confidence across the mammogram. Depending on the selected inference mode, the heatmaps represent either the presence of microcalcifications or the likelihood of suspicious microcalcifications, providing an interpretable visualization of the model's predictions.
 
 ```bash
-python main.py --help
+python mammoAnalyzer.py <input_image> <output_image> -T <type of analysis>
 ```
+### Available Types
+
+#### 🔍 `presence`
+
+Detects the **presence of microcalcifications** in the mammogram.
+
+Output :
+- 🌡️ Presence probability heatmap
+
+---
+
+#### 🩺 `sus`
+
+Detects **suspicious microcalcifications**.
+
+Output :
+- 🌡️ Suspiciousness heatmap
+
+> ⚠️ **Research Use Only:** The pretrained models included in this repository are intended solely for research and educational purposes. They are **not fully approved for clinical use** . 
 
 Typical workflow:
 
@@ -142,7 +167,7 @@ Typical workflow:
 2. 🖼 Read the mammography image
 3. 🔍 Detect candidate patches
 4. 🩺 Classify detected patches
-5. 📊 Generate predictions
+5. 📊 Generate heatmaps
 
 ---
 
@@ -159,20 +184,6 @@ The complete inference pipeline follows these steps:
 
 ---
 
-## 🧩 Why a Patch-Based Approach?
-
-Digital mammograms are extremely high-resolution images, while microcalcifications occupy only a tiny fraction of the image.
-
-Using patches offers several advantages:
-
-- ✅ Preserves fine anatomical details
-- ✅ Reduces GPU memory usage
-- ✅ Improves localization
-- ✅ Focuses learning on subtle texture patterns
-- ✅ Enables efficient processing of large images
-
----
-
 ## 🧠 CBAM Attention Module
 
 To improve feature representation, the backbone network incorporates the **Convolutional Block Attention Module (CBAM)**.
@@ -183,28 +194,6 @@ CBAM sequentially applies:
 - 🎯 Spatial Attention
 
 This allows the network to emphasize the most informative regions and subtle microcalcification patterns.
-
----
-
-## 🎯 Applications
-
-- 🩻 Computer-Aided Detection (CADe)
-- 🩺 Computer-Aided Diagnosis (CADx)
-- 🎗 Breast Cancer Screening
-- 🔬 Medical Imaging Research
-- 🏥 Clinical Decision Support Research
-
----
-
-## 📈 Future Improvements
-
-Potential future developments include:
-
-- 🌍 Full-image localization
-- 📍 Heatmap generation
-- 📦 ONNX/TensorRT deployment
-- ☁️ Web application
-- 📱 Interactive graphical interface
 
 ---
 
