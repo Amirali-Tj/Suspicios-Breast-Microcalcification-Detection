@@ -122,9 +122,14 @@ Install the required packages:
 ```bash
 pip install -r requirements.txt
 ```
+
+
+How to use CLI : 
+
 ```bash
 python mammoAnalyzer.py <input_image> <output_image> -T <type of analysis>
 ```
+
 ### Available Types
 
 #### 🔍 `presence`
