@@ -141,7 +141,7 @@ def cli() :
     opath  = args.output_image_path
     typ    = args.T
     #-----------
-    if typ == "full" : 
+    if typ == "presence" : 
       resnet50_cbam = keras.models.load_model("model/best-t1.keras")
     elif typ == "sus" :
       resnet50_cbam     = keras.models.load_model("model/best-t1.keras")
@@ -172,7 +172,7 @@ def cli() :
         if np.sum(slide) < 3000000 :
           pred_proba.append(1)
         else :
-          if typ == "full" :
+          if typ == "presence" :
             slide = slide / 255
             slide = np.expand_dims(slide , axis=0)
             pred = resnet50_cbam.predict(slide)
