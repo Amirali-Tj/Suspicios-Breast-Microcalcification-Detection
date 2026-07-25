@@ -121,7 +121,7 @@ Install the required packages:
 
 ```bash
 pip install -r requirements.txt
-
+```
 ```bash
 python mammoAnalyzer.py <input_image> <output_image> -T <type of analysis>
 ```
